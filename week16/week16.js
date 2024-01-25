@@ -82,6 +82,8 @@ function makeSix() {
 }
 document.querySelector('.b-6').addEventListener('click', makeSix);
 
+//Далее эти 3 задания 7-8-9 не поняла как делать и сделала по моему не правильно буду рада помощи:
+
 //Задание 7
 //Выведите перечисление названий (name) всех элементов второй формы на экран. В задании 6 вы нашли их количество.
 //Подсказка:
@@ -94,35 +96,52 @@ document.querySelector('.b-6').addEventListener('click', makeSix);
 //- После цикла выведите текст с перечислением элементов в элемент с id practicum7, используя свойство textContent
 
 const nameFormsTwo =document.forms[1].elements;
-console.log(nameFormsTwo);
-let elementsList = '';
-for (i=0; i < nameFormsTwo.length; i++ ){
-elementsList = - document.forms.formTwo.elements;
-console.log('-' + " " + elementsList);
+let elementsListTwo = [];
+
+for (let value of Object.keys(nameFormsTwo)) {
+elementsListTwo +=[value];
+	console.log(value);
 }
+console.log(elementsListTwo);
 function makeSeven() {
 	const paragraphSeven = document.getElementById('practicum7');
 	//Ваш код
+	paragraphSeven.textContent = elementsListTwo;
 }
 
 document.querySelector('.b-7').addEventListener('click', makeSeven);
 
 //Задание 8
 //Выведите перечисление названий (name) всех элементов первой формы на экран. В задании 5 вы нашли их количество.
+const nameFormsOne =document.forms[0].elements;
+let elementsListOne = [];
 
+for (let value of Object.keys(nameFormsOne)) {
+elementsListOne +=[value];
+	console.log(value);
+}
+console.log(nameFormsOne);
 function makeEight() {
 	const paragraphEight = document.getElementById('practicum8');
 	//Ваш код
+	paragraphEight.textContent =elementsListOne;
 }
 
 document.querySelector('.b-8').addEventListener('click', makeEight);
 
 //Задание 9
 //Найдите третью форму на странице. Выведите перечисление названий (name) всех элементов формы на экран.
+const nameFormsThree =document.forms[2].elements;
+let elementsListThree = [];
 
+for (let value of Object.keys(nameFormsThree)) {
+elementsListThree +=[value];
+	console.log(value);
+}
 function makeNine() {
 	const paragraphNine = document.getElementById('practicum9');
 	//Ваш код
+	paragraphNine.textContent = elementsListThree;
 }
 
 document.querySelector('.b-9').addEventListener('click', makeNine);
@@ -130,10 +149,14 @@ document.querySelector('.b-9').addEventListener('click', makeNine);
 //Задание 10
 //Выведите на экран значенеие radio кнопки третьей формы на странице
 //Подсказка: используйте коллекцию document.forms для доступа к формам, свойство elements для доступа к элементам формы и свойство value для получения значения radio кнопки
+const checkbox = document.forms.lastForm.elements;
 
+console.log(checkbox.checked);
 function makeTen() {
+	evt.preventDefault();
 	const paragraphTen = document.getElementById('practicum10');
 	//Ваш код
+	console.log(checkbox.checked);
 }
 
 document.querySelector('.b-10').addEventListener('click', makeTen);
