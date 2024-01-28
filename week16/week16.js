@@ -14,7 +14,7 @@ document.querySelector('.b-1').addEventListener('click', makeOne);
 //Найдите первую форму на странице. При нажатии на кнопку выведите значение атрибута "name" этой формы.
 //Подсказка: используйте коллекцию document.forms и метод getAttribute
 const formOne = document.forms.formOne;
-const resultFormOne = document.formOne.getAttribute('name');
+const resultFormOne = document.forms[0].getAttribute('name');
 function makeTwo() {
 	const paragraphTwo = document.getElementById('practicum2');
 	//Ваш код
@@ -25,8 +25,8 @@ document.querySelector('.b-2').addEventListener('click', makeTwo);
 //Задание 3
 //Найдите последнюю форму на странице. При нажатии на кнопку выведите значение атрибута "name" этой формы.
 //Подсказка: используйте коллекцию document.forms и метод getAttribute
-const lastForm = document.forms.lastForm;
-const resultFormLast = document.lastForm.getAttribute('name');
+
+const resultFormLast = document.forms[document.forms.length -1].getAttribute('name');
 function makeThree() {
 	const paragraphThree = document.getElementById('practicum3');
 	//Ваш код
@@ -46,16 +46,17 @@ document.querySelector('.b-3').addEventListener('click', makeThree);
 //- Преобразуйте массив formNames в строку, разделив названия запятыми, с помощью метода join()
 //- Выведите полученную строку названий форм в элемент с id practicum4 при нажатии на кнопку
 
-const formTwo = document.forms.formTwo;
-const formThree = document.forms.formThree;
-const resultFormTwo = document.formTwo.getAttribute('name');
-const resultFormThree = document.formThree.getAttribute('name');
-const formNames = [resultFormOne,resultFormTwo,resultFormThree, resultFormLast];
-const resultFormNames = formNames.join(', ');
+
+
 function makeFour() {
 	const paragraphFour = document.getElementById('practicum4');
 	//Ваш код
-	paragraphFour.textContent= resultFormNames;
+	const formArray = Array.from(document.forms);
+	const formNames = formArray.map((form) => {
+		return form.getAttribute('name')
+	}
+	)
+	paragraphFour.innerHTML = formNames.join(',');
 }
 document.querySelector('.b-4').addEventListener('click', makeFour);
 
@@ -63,22 +64,22 @@ document.querySelector('.b-4').addEventListener('click', makeFour);
 //Найдите третью форму на странице, используя document.forms и имя формы (которое вы знаете из задания 4)
 //Выведите на страницу количество элементов в форме, используя коллекцию form.elements
 //Подсказка: используйте коллекцию document.forms для получения формы по индексу и свойство form.elements.length для получения количества элементов в форме
-constLenghtformThree = formThree.elements.length;
+
 function makeFive() {
 	const paragraphFive = document.getElementById('practicum5');
-	//Ваш код
-	paragraphFive.textContent = constLenghtformThree;
+const formThree = document.forms[2]
+	
+	paragraphFive.textContent = formThree.elements.length;
 }
 document.querySelector('.b-5').addEventListener('click', makeFive);
 
 //Задание 6
 //Найдите вторую форму на странице, используя document.forms и имя формы (которое вы знаете из задания 4)
 //Выведите на страницу количество элементов в форме, используя коллекцию form.elements
-constLenghtformTwo = formTwo.elements.length;
 function makeSix() {
 	const paragraphSix = document.getElementById('practicum6');
-	//Ваш код
-	paragraphSix.textContent = constLenghtformTwo;
+	const formTwo = document.forms[1];
+	paragraphSix.textContent = formTwo.elements.length;
 }
 document.querySelector('.b-6').addEventListener('click', makeSix);
 
@@ -94,54 +95,44 @@ document.querySelector('.b-6').addEventListener('click', makeSix);
 //- Используя цикл for, переберите элементы формы в коллекции form.elements
 //- Внутри цикла добавьте текущее название элемента формы (свойство name) в elementsList, добавляя дефис перед названием
 //- После цикла выведите текст с перечислением элементов в элемент с id practicum7, используя свойство textContent
-
-const nameFormsTwo =document.forms[1].elements;
-let elementsListTwo = [];
-
-for (let value of Object.keys(nameFormsTwo)) {
-elementsListTwo +=[value];
-	console.log(value);
-}
-console.log(elementsListTwo);
 function makeSeven() {
 	const paragraphSeven = document.getElementById('practicum7');
-	//Ваш код
-	paragraphSeven.textContent = elementsListTwo;
+	const formTwoElements = Array.from(document.forms[1].elements);
+	let elementsList = '';
+	for (let i =0; i < formTwoElements.length; i ++){
+		elementsList = elementsList + formTwoElements[i].getAttribute('name') + ',';
+	}
+	paragraphSeven.textContent = elementsList;
 }
 
 document.querySelector('.b-7').addEventListener('click', makeSeven);
 
 //Задание 8
 //Выведите перечисление названий (name) всех элементов первой формы на экран. В задании 5 вы нашли их количество.
-const nameFormsOne =document.forms[0].elements;
-let elementsListOne = [];
 
-for (let value of Object.keys(nameFormsOne)) {
-elementsListOne +=[value];
-	console.log(value);
-}
-console.log(nameFormsOne);
 function makeEight() {
 	const paragraphEight = document.getElementById('practicum8');
-	//Ваш код
-	paragraphEight.textContent =elementsListOne;
+	const formOneElements = Array.from(document.forms[1].elements);
+	let elementsList = '';
+	for (let i =0; i < formOneElements.length; i ++){
+		elementsList = elementsList + formOneElements[i].getAttribute('name') + ',';
+	}
+	paragraphEight.textContent =elementsList;
 }
 
 document.querySelector('.b-8').addEventListener('click', makeEight);
 
 //Задание 9
 //Найдите третью форму на странице. Выведите перечисление названий (name) всех элементов формы на экран.
-const nameFormsThree =document.forms[2].elements;
-let elementsListThree = [];
 
-for (let value of Object.keys(nameFormsThree)) {
-elementsListThree +=[value];
-	console.log(value);
-}
 function makeNine() {
 	const paragraphNine = document.getElementById('practicum9');
-	//Ваш код
-	paragraphNine.textContent = elementsListThree;
+	const formThreeElements = Array.from(document.forms[1].elements);
+	let elementsList = '';
+	for (let i =0; i < formThreeElements.length; i ++){
+		elementsList = elementsList + formThreeElements[i].getAttribute('name') + ',';
+	}
+	paragraphNine.textContent = elementsList;
 }
 
 document.querySelector('.b-9').addEventListener('click', makeNine);
@@ -149,14 +140,12 @@ document.querySelector('.b-9').addEventListener('click', makeNine);
 //Задание 10
 //Выведите на экран значенеие radio кнопки третьей формы на странице
 //Подсказка: используйте коллекцию document.forms для доступа к формам, свойство elements для доступа к элементам формы и свойство value для получения значения radio кнопки
-const checkbox = document.forms.lastForm.elements;
 
-console.log(checkbox.checked);
 function makeTen() {
-	evt.preventDefault();
 	const paragraphTen = document.getElementById('practicum10');
-	//Ваш код
-	console.log(checkbox.checked);
+	const formFirstElements = Array.from(document.forms[3].elements);
+paragraphTen.textContent = formFirstElements[0].value
+	
 }
 
 document.querySelector('.b-10').addEventListener('click', makeTen);
@@ -173,7 +162,12 @@ document.querySelector('.b-10').addEventListener('click', makeTen);
 
 function makeEleven() {
 	const paragraphEleven = document.getElementById('practicum11');
-	//Ваш код
+	const options = Array.from(document.forms[0].elements[2]);
+	let optionsValues = '';
+	for(let i =0; i < options.length; i++){
+		optionsValues = optionsValues + options[i].getAttribute('value') + ',';
+	}
+	paragraphEleven.textContent = optionsValues;
 }
 
 document.querySelector('.b-11').addEventListener('click', makeEleven);
@@ -187,7 +181,9 @@ document.querySelector('.b-11').addEventListener('click', makeEleven);
 
 function makeTwelve() {
 	const paragraphTwelve = document.getElementById('practicum12');
-	//Ваш код
+	const firstFormElements = Array.from(document.forms[1].elements);
+	
+	paragraphTwelve.textContent = firstFormElements[2].id + (',')+ firstFormElements[3].id + (',') + firstFormElements[4].id;
 }
 
 document.querySelector('.b-12').addEventListener('click', makeTwelve);
@@ -205,7 +201,11 @@ function checkButton(e) {
 	e.preventDefault();
 
 	const paragraphThirteen = document.getElementById('practicum13');
-	//Ваш код
+	const radio = document.forms[3].elements[0]
+	if(radio.checked){
+		paragraphThirteen.textContent = 'Кнопка выбрана'
+	}
+	else paragraphThirteen.textContent = 'Кнопка не выбрана';
 }
 
 document.querySelector('.b-13').addEventListener('click', checkButton);
@@ -221,7 +221,12 @@ document.querySelector('.b-13').addEventListener('click', checkButton);
 
 function checkOption() {
 	const paragraphFourteen = document.getElementById('practicum14');
-	//Ваш код
+	const select = document.forms[0].elements[2];
+	const options = Array.from(select.options);
+	options.forEach((options) => {
+		if(options.selected) paragraphFourteen.textContent = options.value
+	})
+
 }
 
 document.querySelector('.b-14').addEventListener('click', checkOption);
